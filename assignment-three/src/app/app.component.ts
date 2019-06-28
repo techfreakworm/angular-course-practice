@@ -9,5 +9,11 @@ import { BlockingProxy } from 'blocking-proxy';
 export class AppComponent {
   title = 'assignment-three';
   isParagraphVisible = true;
+  log = []
 
+
+  onToggleDisplay(){
+    this.isParagraphVisible = !this.isParagraphVisible;
+    this.log.push(this.log.length + 1)
+  }
 }

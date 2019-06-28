@@ -1,2 +1,4 @@
-<button (click)="isParagraphVisible = !isParagraphVisible">Display Details</button>
+<button (click)="onToggleDisplay()">Display Details</button>
+<!-- <button (click)="onToggleDisplay()">Display Details</button> -->
 <p *ngIf="isParagraphVisible">Secret password = tuna</p>
+<div *ngFor="let logItem of log" [ngStyle]="{backgroundColor: logItem >=5?'blue':'transparent'}" [ngClass]="{'white-text': logItem >=5}">{{ logItem}}</div>
