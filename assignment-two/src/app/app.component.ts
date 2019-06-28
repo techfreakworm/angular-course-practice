@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'assignment-two';
+  username='';
+
+  removeUsername(){
+    this.username='';
+  }
 }
