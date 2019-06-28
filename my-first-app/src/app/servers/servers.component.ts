@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   // template: `
   // <app-server></app-server>
   // <app-server></app-server>`,
-  templateUrl:'/servers.component.html'
+  templateUrl:'/servers.component.html',
+
 })
 export class ServersComponent implements OnInit {
   allowNewServer = false;
