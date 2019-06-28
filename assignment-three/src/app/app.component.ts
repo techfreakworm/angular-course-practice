@@ -10,11 +10,4 @@ export class AppComponent {
   title = 'assignment-three';
   isParagraphVisible = true;
 
-  togglePasswordVisibility(){
-    this.isParagraphVisible = !this.isParagraphVisible;
-  }
-
-  getVisibility(){
-    this.isParagraphVisible? "none": "block";
-  }
 }
