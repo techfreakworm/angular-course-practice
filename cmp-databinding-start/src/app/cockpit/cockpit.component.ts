@@ -24,7 +24,7 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddBlueprint(nameInput: HTMLInputElement){
-    this.serverContentInput.nativeElement.value = "Something";
+    this.serverContentInput.nativeElement.value = "Something"; //Should not access DOM like this
     this.blueprintCreated.emit({serverName: nameInput.value, serverContent: this.serverContentInput.nativeElement.value});
   }
 
