@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 })
 export class PostsService {
 
+  constructor(private http: HttpClient) { }
+
   createAndStorePost(title: string, content: string) {
     const postData: Post = { title: title, content: content };
     this.http
@@ -31,7 +33,12 @@ export class PostsService {
         }
         return postsArray;
       }
-      ))
+      ));
   }
-  constructor(private http: HttpClient) { }
+
+  deletePosts() {
+    return this.http.delete('https://http-start-2588b.firebaseio.com/posts.json');
+  }
+
+
 }
