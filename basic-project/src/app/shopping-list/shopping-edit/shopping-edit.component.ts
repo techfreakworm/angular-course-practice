@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgFormSelectorWarning } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,9 +10,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f', { static: false }) slForm: NgForm;
   subscription: Subscription;
   editMode = false;
   edittedItemIndex: number;
+  edittedItem: Ingredient;
 
   constructor(private slService: ShoppingListService) { }
 
@@ -21,6 +23,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       (index: number) => {
         this.edittedItemIndex = index;
         this.editMode = true;
+        this.edittedItem = this.slService.getIngredient(index);
+        this.slForm.setValue({
+          name: this.edittedItem.name,
+          amount: this.edittedItem.amount
+        });
       }
     );
   }
@@ -32,7 +39,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   onAddItem(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
-    this.slService.addIngredient(newIngredient);
+    if (this.editMode) {
+      this.slService.updateIngredient(this.edittedItemIndex, newIngredient);
+    } else {
+      this.slService.addIngredient(newIngredient);
+    }
+
   }
 
 }
