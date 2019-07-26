@@ -45,7 +45,9 @@ export class RecipeEditComponent implements OnInit {
       imagePath: new FormControl(recipeImagePath),
       description: new FormControl(recipeDescription)
     });
+  }
 
-
+  onSubmit() {
+    console.log(this.recipeForm);
   }
 }
