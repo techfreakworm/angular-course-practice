@@ -17,7 +17,10 @@ export class PostsService {
     this.http
       .post<{ name: string }>(
         'https://http-start-2588b.firebaseio.com/posts.json',
-        postData
+        postData,
+        {
+          observe: 'response'
+        }
       )
       .subscribe(
         responseData => {
