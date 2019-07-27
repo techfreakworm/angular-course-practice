@@ -19,9 +19,14 @@ export class PostsService {
         'https://http-start-2588b.firebaseio.com/posts.json',
         postData
       )
-      .subscribe(responseData => {
-        this.error.next(error.message);
-      });
+      .subscribe(
+        responseData => {
+          console.log(responseData);
+        },
+        error => {
+          this.error.next(error.message);
+        }
+      );
   }
 
   fetchPosts() {

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.postsService.error.subscribe(errorMessage => {
       this.error = errorMessage;
     });
-    this.onFetchPosts();
+    // this.onFetchPosts();
   }
 
   onCreatePost(postData: Post) {
