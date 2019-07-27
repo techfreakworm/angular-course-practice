@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
-import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,8 @@ export class PostsService {
   }
 
   fetchPosts() {
-    return this.http.get<{ [key: string]: Post }>('https://http-start-2588b.firebaseio.com/posts.json')
+    return this.http
+      .get<{ [key: string]: Post }>('https://http-start-2588b.firebaseio.com/posts.json')
       .pipe(map((responseData) => {
         const postsArray: Post[] = [];
         for (const key in responseData) {
@@ -40,7 +41,12 @@ export class PostsService {
         }
         return postsArray;
       }
-      ));
+      ), catchError(
+        (errorRes) => {
+          // Send to analytic server
+          return throwError(errorRes);
+        })
+      );
   }
 
   deletePosts() {
