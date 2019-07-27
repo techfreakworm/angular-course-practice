@@ -9,18 +9,18 @@ export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe(
-      'A Test Recipe',
-      'This is simple a test',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOKqRSrKvWvPOq37JYlK2Daz0MLKRbQxZst0cDBbH167mqrAV9',
-      [new Ingredient('Bread', 2), new Ingredient('Flour', 3)]
-    ),
-    new Recipe(
-      'Another Test Recipe',
-      'This is simple a test',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOKqRSrKvWvPOq37JYlK2Daz0MLKRbQxZst0cDBbH167mqrAV9',
-      [new Ingredient('Potato', 4), new Ingredient('Tomato', 5)]
-    )
+    // new Recipe(
+    //   'A Test Recipe',
+    //   'This is simple a test',
+    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOKqRSrKvWvPOq37JYlK2Daz0MLKRbQxZst0cDBbH167mqrAV9',
+    //   [new Ingredient('Bread', 2), new Ingredient('Flour', 3)]
+    // ),
+    // new Recipe(
+    //   'Another Test Recipe',
+    //   'This is simple a test',
+    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOKqRSrKvWvPOq37JYlK2Daz0MLKRbQxZst0cDBbH167mqrAV9',
+    //   [new Ingredient('Potato', 4), new Ingredient('Tomato', 5)]
+    // )
   ];
 
   constructor(private slService: ShoppingListService) { }
