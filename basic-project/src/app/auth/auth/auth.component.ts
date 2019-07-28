@@ -40,8 +40,13 @@ export class AuthComponent implements OnInit {
           console.log(responseData);
           this.isLoading = false;
         },
-        error => {
-          this.error = 'An Error occured!';
+        errorResponse => {
+          console.log(errorResponse);
+          switch (errorResponse.error.error.message) {
+            case 'INVALID_EMAIL':
+              this.error = 'This email already exists!';
+          }
+          // this.error = 'An Error occured!';
           this.isLoading = false;
         }
       );
