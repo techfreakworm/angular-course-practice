@@ -1,4 +1,4 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -11,13 +11,19 @@ export class AuthGaurd implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         router: RouterStateSnapshot
-    ): boolean | Promise<boolean> | Observable<boolean> {
+    ): boolean | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> | UrlTree {
         return this.authService.user.pipe(map(user => {
-            return !!user;
-        }), tap(isAuth => {
-            if (!isAuth) {
-                this.router.navigate(['/auth']);
+            const isAuth = !!user;
+            if (isAuth) {
+                return true;
             }
-        }));
+            return this.router.createUrlTree(['/auth']);
+        }),
+            // tap(isAuth => {
+            //     if (!isAuth) {
+            //         this.router.navigate(['/auth']);
+            //     }
+            // })
+        );
     }
 }
