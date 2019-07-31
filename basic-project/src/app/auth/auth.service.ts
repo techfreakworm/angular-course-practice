@@ -83,6 +83,7 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
   }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
